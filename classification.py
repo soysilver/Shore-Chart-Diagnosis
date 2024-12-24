@@ -1,8 +1,8 @@
 import math
-from Diagnosis import ISO
+import ISO
 
 
-def forBearing(pkt, mms):
+def forBearing(pkt, vibration):
     machineType = pkt['machineType']
     Gear = pkt['Gear']
     Support = pkt['Support']
@@ -13,128 +13,124 @@ def forBearing(pkt, mms):
     if machineType == "Steam Turbine":
         if Power > 50000000:
             if 1400 < Speed <1600 or 1700 < Speed <1900:
-                if mms < 0.28: 
+                if vibration < 0.28: 
                     return "still"
-                elif 0.28<= mms < 2.8: 
+                elif 0.28<= vibration < 2.8: 
                     return "good"
-                elif 2.8<= mms < 5.3: 
+                elif 2.8<= vibration < 5.3: 
                     return "satisfactory"
-                elif 5.3 <= mms < 6.6: 
+                elif 5.3 <= vibration < 6.6: 
                     return "unsatisfactory"
-                elif 6.6 <= mms < 8.5: 
-                    return "unsatisfactory - alarm"
-                elif 8.5 <= mms < 10.6: 
+                elif 6.6 <= vibration :
                     return "unacceptable"
-                elif 10.6 <= mms: 
-                    return "unacceptable - trip"
                 else: return "unknown"
             elif 2900 < Speed <3100 or 3500 < Speed <3700:
-                if mms < 0.28: 
+                if vibration < 0.28: 
                     return "still"
-                elif 0.28<= mms < 3.8: 
+                elif 0.28<= vibration < 3.8: 
                     return "good"
-                elif 3.8<= mms < 7.5: 
+                elif 3.8<= vibration < 7.5: 
                     return "satisfactory"
-                elif 7.5 <= mms < 9.3: 
+                elif 7.5 <= vibration < 9.3: 
                     return "unsatisfactory"
-                elif  9.3 <= mms < 11.8: 
+                elif  9.3 <= vibration < 11.8: 
                     return "unsatisfactory - alarm"
-                elif 11.8 <= mms < 14.8: 
+                elif 11.8 <= vibration < 14.8: 
                     return "unacceptable"
-                elif 14.8 <= mms: 
+                elif 14.8 <= vibration: 
                     return "unacceptable - trip"
                 else: return "unknown"
             else: return "unknown"
-        elif 300000<Power <50000000: return ISO.ISO10816_3(1, mms)
-        else: return ISO.ISO10816_3(2, mms)
+        elif 300000<Power <50000000: return ISO.ISO10816_3(1, vibration)
+        else: return ISO.ISO10816_3(2, vibration)
 
     elif machineType == "Gas Turbine":
         if Power > 3000000:
             if 120 < Speed <15000:
-                if mms < 0.28: 
+                if vibration < 0.28: 
                     return "still"
-                elif 0.28<= mms < 4.5: 
+                elif 0.28<= vibration < 4.5: 
                     return "good"
-                elif 4.5<= mms < 9.3: 
+                elif 4.5<= vibration < 9.3: 
                     return "satisfactory"
-                elif 9.3 <= mms < 11.625: 
+                elif 9.3 <= vibration < 11.625: 
                     return "unsatisfactory"
-                elif  11.625 <= mms < 14.7: 
+                elif  11.625 <= vibration < 14.7: 
                     return "unsatisfactory - alarm"
-                elif 14.7 <= mms < 18.375: 
+                elif 14.7 <= vibration < 18.375: 
                     return "unacceptable"
-                elif 18.375 <= mms: 
+                elif 18.375 <= vibration: 
                     return "unacceptable - trip"
                 else: return "unknown"
             else: return "unknown"
-        else: return ISO.ISO10816_3(2, mms)
+        else: return ISO.ISO10816_3(2, vibration)
   
     elif machineType == "Pump" or machineType == "Fan" or machineType == "Generator" or machineType == "Compressor" or machineType == "Motor" or machineType == "Blower":
         if 120 < Speed <15000:
             if Support == "Rigid": 
                 if 300000<Power < 50000000:
-                    if mms < 0.28: 
+                    if vibration < 0.28: 
                         return "still"
-                    elif 0.28<= mms < 2.3: 
+                    elif 0.28<= vibration < 2.3: 
                         return "good"
-                    elif 2.3<= mms < 4.5: 
+                    elif 2.3<= vibration < 4.5: 
                         return "satisfactory"
-                    elif 4.5 <= mms < 5.625: 
+                    elif 4.5 <= vibration < 5.625: 
                         return "unsatisfactory"
-                    elif 5.625 <= mms < 7.1: 
+                    elif 5.625 <= vibration < 7.1: 
                         return "unsatisfactory - alarm"
-                    elif 7.1 <= mms < 8.875: 
+                    elif 7.1 <= vibration < 8.875: 
                         return "unacceptable"
-                    elif 8.875 <= mms: 
+                    elif 8.875 <= vibration: 
                         return "unacceptable - trip"
                     else: return "unknown"
                 elif 15000<Power < 300000:
-                    if mms < 0.28: 
+                    if vibration < 0.28: 
                         return "still"
-                    elif 0.28<= mms < 1.4: 
+                    elif 0.28<= vibration < 1.4: 
                         return "good"
-                    elif 1.4<= mms < 2.8: 
+                    elif 1.4<= vibration < 2.8: 
                         return "satisfactory"
-                    elif 2.8 <= mms < 3.5: 
+                    elif 2.8 <= vibration < 3.5: 
                         return "unsatisfactory"
-                    elif 3.5 <= mms < 4.5: 
+                    elif 3.5 <= vibration < 4.5: 
                         return "unsatisfactory - alarm"
-                    elif 4.5 <= mms < 5.625: 
+                    elif 4.5 <= vibration < 5.625: 
                         return "unacceptable"
-                    elif 5.625 <= mms: 
+                    elif 5.625 <= vibration: 
                         return "unacceptable - trip"
                     else: return "unknown"
             elif Support == "flexible": 
                 if 300000<Power < 50000000:
-                    if mms < 0.28: 
+                    if vibration < 0.28: 
                         return "still"
-                    elif 0.28<= mms < 3.5: 
+                    elif 0.28<= vibration < 3.5: 
                         return "good"
-                    elif 3.5<= mms < 7.1: 
+                    elif 3.5<= vibration < 7.1: 
                         return "satisfactory"
-                    elif 7.1 <= mms < 8.875: 
+                    elif 7.1 <= vibration < 8.875: 
                         return "unsatisfactory"
-                    elif 8.875 <= mms < 11.0: 
+                    elif 8.875 <= vibration < 11.0: 
                         return "unsatisfactory - alarm"
-                    elif 11.0 <= mms < 13.75: 
+                    elif 11.0 <= vibration < 13.75: 
                         return "unacceptable"
-                    elif 13.75 <= mms: 
+                    elif 13.75 <= vibration: 
                         return "unacceptable - trip"
                     else: return "unknown"
                 elif 15000<Power < 300000:
-                    if mms < 0.28: 
+                    if vibration < 0.28: 
                         return "still"
-                    elif 0.28<= mms < 2.3: 
+                    elif 0.28<= vibration < 2.3: 
                         return "good"
-                    elif 2.3<= mms < 4.5: 
+                    elif 2.3<= vibration < 4.5: 
                         return "satisfactory"
-                    elif 4.5 <= mms < 5.625: 
+                    elif 4.5 <= vibration < 5.625: 
                         return "unsatisfactory"
-                    elif 5.625 <= mms < 7.1: 
+                    elif 5.625 <= vibration < 7.1: 
                         return "unsatisfactory - alarm"
-                    elif 7.1 <= mms < 8.875: 
+                    elif 7.1 <= vibration < 8.875: 
                         return "unacceptable"
-                    elif 8.875 <= mms: 
+                    elif 8.875 <= vibration: 
                         return "unacceptable - trip"
                     else: return "unknown"
                 else: return "unknown"

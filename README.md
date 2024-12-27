@@ -1,3 +1,2 @@
-This code analyzes a 1024-length FFT dataset to identify potential causes and estimate the likelihood of each failure, using ISO standards and the well - known Shore's chart for system diagnostics.
 
-@Meta-CPS, All Copyrights at KIST, 2024 Dec
+This code utilizes a 1024-length FFT dataset to pinpoint potential causes and assess the likelihood of each failure, leveraging ISO standards and the renowned Shore's chart for advanced system diagnostics. This work is part of the [@Meta-CPS project, All rights reserved by KIST, December 2024].

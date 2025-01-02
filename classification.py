@@ -2,13 +2,7 @@ import math
 import ISO
 
 
-def forBearing(pkt, vibration):
-    machineType = pkt['machineType']
-    Gear = pkt['Gear']
-    Support = pkt['Support']
-    Power = pkt['Power']
-    Speed = pkt['Speed']
-    Critical = pkt['Critical']
+def forBearing(machineType, Support, Power, Speed, vibration):
 
     if machineType == "Steam Turbine":
         if Power > 50000000:
@@ -238,13 +232,7 @@ def forAxis(pkt, microS):
         else: return ISO.ISO7919_3(Speed, microS)
     else: return "unknown"
 
-def getAlarm(pkt):
-    machineType = pkt['machineType']
-    Gear = pkt['Gear']
-    Support = pkt['Support']
-    Power = pkt['Power']
-    Speed = pkt['Speed']
-    Critical = pkt['Critical']
+def getAlarm(machineType, Support, Power, Speed):
     if machineType == "Steam Turbine":
         if Power > 50000000:
             if 1400 < Speed <1600 or 1700 < Speed <1900:

@@ -75,8 +75,8 @@ def Shore(SCC, pkt):
     except: return SCC
 
     #print(classification.forAxis(pkt, microS))
-    alarm = classification.getAlarm(pkt)
-    #print(classification.forBearing(pkt, mms))
+    alarm = classification.getAlarm(machineType, Support, Power, Speed)
+    #print(classification.forBearing(machineType, Support, Power, Speed, vibration))
     rpm = pkt['Speed']/60
     try:
         i1 = fft[int(pkt['Critical']/60)]

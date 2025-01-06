@@ -77,9 +77,9 @@ def Shore(SCC, pkt):
     #print(classification.forAxis(pkt, microS))
     alarm = classification.getAlarm(machineType, Support, Power, Speed)
     #print(classification.forBearing(machineType, Support, Power, Speed, vibration))
-    rpm = pkt['Speed']/60
+    rpm = Speed/60
     try:
-        i1 = fft[int(pkt['Critical']/60)]
+        i1 = fft[int(Critical/60)]
         i2 = sum(fft[int(rpm*0.4):int(rpm*0.5)]) / len(fft[int(rpm*0.4):int(rpm*0.5)])
         i3 = sum(fft[int(rpm*0.5):int(rpm)]) / len(fft[int(rpm*0.5):int(rpm)])
         i4 = fft[int(rpm)]
